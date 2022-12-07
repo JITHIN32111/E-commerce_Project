@@ -1,0 +1,77 @@
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/adminassets/img/favicon.png" rel="icon">
+  <link href="/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/adminassets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/adminassets/css/style.css" rel="stylesheet">
+</head>
+
+<main class="main" id="main">
+<body style=" background-image: linear-gradient(to right, rgb(0,0,0), rgb(0 0 0));">
+<section>
+    <div class="container mt-4 text-light">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Edit Category</h2>
+                <form action="/admin/edit-category/{{category._id}}"  enctype="multipart/form-data" method="post">
+                    <label for="">Name</label>
+                    <input type="text" value="{{category.name}}" required name="name" class="form-control">
+
+                    
+
+                     <label for="">Discription</label>
+                    <input type="text" name="discription" class="form-control" value="{{category.discription}}">
+
+
+                    <label for="">Image</label>
+                                      <img src="/photos/categoryimage/{{category.img}}" alt="" style="width:50px;height:50px" id="imgView" class="p-2">
+
+                    <input type="file" name="image" class="form-control" onchange="viewImage(event)" >
+
+                    <button type="submit" class="btn btn-success mt-4" >submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <script src="/adminassets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/adminassets/vendor/chart.js/chart.min.js"></script>
+  <script src="/adminassets/vendor/echarts/echarts.min.js"></script>
+  <script src="/adminassets/vendor/quill/quill.min.js"></script>
+  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/adminassets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/adminassets/js/main.js"></script>
+</body>
+
+</main>
+<script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

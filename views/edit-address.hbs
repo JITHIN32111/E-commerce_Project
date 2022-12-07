@@ -1,0 +1,107 @@
+ <link rel="stylesheet" href="/assets/css/style.css">
+
+  <div class="page-wrapper"  style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(185, 209, 231));">
+
+
+        <div class="page-content">
+            <div class="checkout">
+                <div class="container">
+                    
+                    <div class="checkout-discount">
+                        {{!-- <form action="#">
+                            <input type="text" class="form-control" required id="checkout-discount-input">
+                            <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here
+                                    to enter your code</span></label>
+                        </form> --}}
+                    </div><!-- End .checkout-discount -->
+                    
+                    <form action="/editAddress/{{address._id}}" method="post" >
+                    
+                        <div class="row">
+                            <div class="col-lg-9  mx-auto " style="background-color:#dadada ;">
+                                <h2 class="checkout-title mx-auto">Edit Address</h2><!-- End .checkout-title -->
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <label>First Name *</label>
+                                        <input type="text" name="firstname" value="{{address.firstname}}" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>Last Name *</label>
+
+                                        <input type="text " value="{{address.lastname}}"  name="lastname" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <label>Company Name (Optional)</label>
+                                <input type="text" value="{{address.companyname}}"  name="companyname" class="form-control">
+
+                                <label>Country *</label>
+                                <input type="text" value="{{address.country}}"  name="country" class="form-control" required>
+
+                               
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Town / City *</label>
+                                        <input type="text" value="{{address.towncity}}"  name="towncity" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>State / County *</label>
+                                        <input type="text " value="{{address.statecounty}}"  name="statecounty" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Postcode / ZIP *</label>
+                                        <input type="text" value="{{address.postcode}}"  name="postcode" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>Phone *</label>
+                                        <input type="tel" value="{{address.phonenumber}}"  name="phonenumber" class="form-control" required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <label>Email address *</label>
+                                <input type="email" value="{{address.email}}"  name="email" class="form-control" required>
+<div>
+     <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        submit</button>
+</div>
+
+
+                          
+                        </div><!-- End .row -->
+                    </form>
+                </div><!-- End .container -->
+            </div><!-- End .checkout -->
+        </div><!-- End .page-content -->
+        </main><!-- End .main -->
+        <script>
+
+
+      $.ajax({
+        
+      url:'/editAddress/:id',
+      type:'post',
+      success:(response)=>{
+       
+         location.reload()
+      }
+     }).then(()=>{ 
+     
+Swal.fire({
+  imageUrl: 'https://www.piwebsolution.com/wp-content/uploads/2021/06/cancel-order-request-button-woocommerce-1.svg',
+  imageHeight: 300,
+  imageAlt: 'A tall image'
+})
+    
+
+      
+       
+    }) 
+  

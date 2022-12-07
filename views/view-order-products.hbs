@@ -1,0 +1,264 @@
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+<link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+
+<main class="main" id="main" style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(185, 209, 231));">
+
+  <body style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(185, 209, 231));">
+    <div class="container "style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(185, 209, 231));">-
+      {{#if (barStatus4 trackOrder)}}
+      {{/if}}
+      <h2 class="title text-center mb-5">View Prouducts</h2><!-- End .title -->
+      <div class="cta cta-border mb-5">
+        <div class="row">
+          {{#each products}}
+          <div class="row justify-content-center">
+            <div class="col-md-11 col-xl-10">
+              <div class="cta-content">
+                <div class="cta-heading">
+                  <img src="/photos/products/{{this.product.img.[1]}}" class="img-fluid rounded-start" alt="...">
+                </div><!-- End .cta-heading -->
+
+                <div class="cta-text mt-4 mb-4">
+                  <h5>{{this.product.name}}</h5>
+                  <br>
+                  <p class="text-dark">Category:{{this.product.category}}</p>
+                  <br>
+                  <p>Price:₹{{this.product.price}}</p>
+                  <br>
+                  <p>status:{{this.trackOrder}}</p>
+                  <br>
+                  <p>quantity:{{this.quantity}}</p>
+
+                </div>
+                 {{#if (returnApp this.trackOrder)}}
+                <p style="color: green;">Return Approved</p>
+                {{else}}
+                {{#if (returnRequest this.trackOrder)}}
+                <p>requested</p>
+                {{else}}
+                {{#if (isDelivered this.trackOrder)}}
+                <p style="color: green;">Delivered</p>
+                {{else}}
+                {{#if (isCancelled this.trackOrder)}}
+
+                <p style="color: red;">cancelled</p>
+                {{else}}
+
+                <!-- End .cta-text -->
+                <a class="btn btn-danger btn-rounded text-light"
+                  onclick="orde('{{this._id}}','{{this.item}}','{{this.quantity}}')"><span>Cancel</span><i
+                    class="icon-long-arrow-right"></i></a>
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                <br>
+                {{#if (review this.trackOrder)}}
+
+                <a href="#review-modal{{this.product._id}} {{userId}} {{member.firstname}} {{member.lastname}}"
+                  data-toggle="modal" class="btn btn-outline-light text-danger ms-2" ><span>Add Review</span><i
+                    class="icon-long-arrow-right"></i></a>
+
+
+                <a href="#return-modal{{this.item}}" data-toggle="modal"
+                  class="btn btn-outline-light text-danger ms-2"><span>Return </span><i
+                    class="icon-long-arrow-right"></i></a>
+                {{!-- <a href="/return">return</a> --}}
+
+                {{/if}}
+
+
+
+
+
+
+
+
+
+                <div class="modal fade" id="return-modal{{this.item}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"><i class="icon-close"></i></span>
+                        </button>
+
+                        <div class="form-box">
+                          <div class="form-tab">
+
+                            <div class="tab-content" id="tab-content-5">
+                              <div class="tab-pane fade show active" id="signin" role="tabpanel"
+                                aria-labelledby="signin-tab">
+
+                                <form action="/return-details" method="post">
+                                  <div class="form-group">
+                                    <label for="singin-email">Note</label>
+                                    <input type="text" class="form-control" size="50" name="note" required>
+                                  </div><!-- End .form-group -->
+
+                                  <div class="form-group">
+                                    <label for="singin-email">Discription</label>
+                                    <input type="text" class="form-control" size="50" name="discription" required>
+                                  </div>
+
+
+                                  <input type="text" name="proId" value="{{this.product._id}}" hidden>
+                                  <input type="text" name="orderId" value="{{../orderId}}" hidden>
+
+
+
+
+
+                                  <div class="form-footer">
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                      <span>submit</span>
+                                      <i class="icon-long-arrow-right"></i>
+                                    </button>
+
+
+                                  </div><!-- End .form-footer -->
+                                </form>
+
+
+                              </div><!-- End .form-choice -->
+                            </div><!-- .End .tab-pane -->
+
+                          </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                      </div><!-- End .form-box -->
+                    </div><!-- End .modal-body -->
+                  </div><!-- End .modal-content -->
+                </div><!-- End .modal-dialog -->
+
+
+
+
+
+
+                <div class="modal fade" id="review-modal{{this.product._id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"><i class="icon-close"></i></span>
+                        </button>
+
+                        <div class="form-box">
+                          <div class="form-tab">
+
+                            <div class="tab-content" id="tab-content-5">
+                              <div class="tab-pane fade show active" id="signin" role="tabpanel"
+                                aria-labelledby="signin-tab">
+
+                                <form action="/review-details" method="post" enctype="multipart/form-data">
+                                  <div class="form-group">
+                                    <label for="singin-email">Review</label>
+                                    <input type="text" class="form-control" size="50" name="name" required>
+                                  </div><!-- End .form-group -->
+
+                                  <div class="form-group">
+                                    <label for="singin-email">Add Photo</label>
+                                    <input type="file" name="image" class="form-control" id="formFile"
+                                      accept="image/gif, image/jpeg, image/png" multiple />
+                                  </div>
+                                  <input type="text" name="proId" value="{{this.product._id}}" hidden>
+                                  {{!-- <input type="text" name="userId" value="{{../userId}}" hidden> --}}
+                                  <input type="text" name="userName" id=""
+                                    value="{{../member.firstname}} {{../member.lastname}}" hidden>
+                                  <div class="form-footer">
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                      <span>submit</span>
+                                      <i class="icon-long-arrow-right"></i>
+                                    </button>
+                                  </div><!-- End .form-footer -->
+                                </form>
+                              </div><!-- End .form-choice -->
+                            </div><!-- .End .tab-pane -->
+                          </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                      </div><!-- End .form-box -->
+                    </div><!-- End .modal-body -->
+                  </div><!-- End .modal-content -->
+                </div><!-- End .modal-dialog -->
+
+              </div><!-- End .cta-content -->
+            </div><!-- End .col-xl-7 -->
+          </div>
+
+     
+
+      
+      </div> 
+      <div class="progress">
+        
+        {{#if (barStatus trackOrder)}}
+        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100">Placed</div>
+
+        {{/if}}
+        {{#if (barStatus1 trackOrder)}}
+        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100">Dispatched</div>
+        {{/if}}
+        {{#if (barStatus2 trackOrder)}}
+        <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100">Shipped</div>
+        {{/if}}
+        {{#if (barStatus3 trackOrder)}}
+        <div class="progress-bar" role="progressbar" style="width: 100%;background-color:rgb(6, 29, 5);"
+          aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Delivered</div>
+        {{/if}}
+        {{#if (barStatus4 trackOrder)}}
+        <div class="progress-bar" role="progressbar" style="width: 100%; background-color:brown;" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">cancelled</div>
+        {{/if}}
+        
+      </div>
+      
+        {{/each}}
+      </div>
+      </div>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    --
+    <script>
+  
+
+
+      function orde(orderId, proId, qnty) {
+        console.log('helloo')
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+              $.ajax({
+                url: '/admin/cancel-Ordder/' + orderId + '/' + proId + '/' + qnty,
+                type:'put',
+                success: (response) => {
+                  swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                  }).then(() => {
+                    location.reload()
+                  })
+
+
+                }
+              })
+
+            }
+          });
+      }
+    </script>
+    </div>

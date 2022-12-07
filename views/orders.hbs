@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="assets/css/style.css">
+<main class="main" id="main">
+<body>
+<div  class="container">
+<table class="table" >
+  <thead class="bg-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+     <th scope="col">Address</th>
+      <th scope="col">Payment</th>
+      <th scope="col">Total</th>
+      <th scope="col">Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   {{#each orders}}
+ 
+<tr class="fs-bold" style="background-color: gray;">
+
+    <td>1</td>
+    <td class="fs-bold">{{this.date}}</td>
+
+     <td >
+        <p style="color: black;">name:{{this.deliveryDetails.firstname}} {{this.deliveryDetails.lastname}}</p>
+        <p style="color: black;">phone:{{this.deliveryDetails.phone}}</p>
+        <p style="color: black;">E-mail:{{this.deliveryDetails.email}}</p>
+        <p style="color: black;">Town:{{this.deliveryDetails.town}}</p>
+        <p style="color: black;">State:{{this.deliveryDetails.state}}</p>
+        <p style="color: black;">Country:{{this.deliveryDetails.country}}</p>
+        <p style="color: black;">Post:{{this.deliveryDetails.post}}</p>
+      </td>
+       <td>{{this.paymentMethod}}</td>
+       <td>{{this.totalAmount}}</td>
+       <td id="hallo">{{this.status}}</td>
+       <td>
+        <a href="/view-order-products/{{this._id}}" class="btn btn-primary" style="background-color: black;">view products</a>
+        {{#if (isCancelled this.status)}}
+        {{else}}
+      <a class="btn btn-primary" style="background-color: rgb(228, 21, 21); " onclick="order('{{this._id}}')" id="{{this._id}}">Cancel</a> 
+        {{/if}}
+       </td>
+    {{!-- <td><a href="/cancel-Ordder/{{this._id}}" class="btn btn-primary" style="background-color: rgb(228, 21, 21);">Cancel</a> </td> --}}
+       
+         
+          
+</tr>
+
+ 
+    {{/each}}
+  </tbody>
+</table>
+</div>
+</body>
+</main>
+<script>
+  function order(orderId){
+
+     $.ajax({
+      url:'/cancel-Ordder/'+orderId,
+      type:'get',
+      success:(response)=>{
+        alert(khjkhkjhk)
+         
+      }
+     }).then(()=>{ 
+      {{!-- document.getElementById("halo").innerHTML="canceled" --}}
+    
+              document.getElementById(orderId).style.display="none"
+
+      location.reload()  
+       
+    })
+  }
+</script>

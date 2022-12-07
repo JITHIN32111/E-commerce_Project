@@ -1,0 +1,209 @@
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/adminassets/img/favicon.png" rel="icon">
+  <link href="/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/adminassets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/adminassets/css/style.css" rel="stylesheet">
+
+</head>
+<main class="main" id="main">
+<body  style=" background-image: linear-gradient(to right, rgb(0,0,0), rgb(0 0 0));">
+
+  <table class="table mt-3">
+  <thead>
+    <tr>
+      <th class="text-light" scope="col">#</th>
+      <th class="text-light"  scope="col">Name</th>
+    
+      <th class="text-light" scope="col">Price</th>
+         <th class="text-light" scope="col">image</th>
+         <th class="text-light" scope="col">offerpercentage</th>
+          <th class="text-light" scope="col">offerprice</th>
+         <th class="text-light" scope="col">offer</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each product}}
+    <tr>
+      <th class="text-light" scope="row">
+      
+  {{inc @index}}
+
+      </th>
+      <td class="text-light">{{this.name}}</td>
+  
+      
+      <td class="text-light">{{this.oldprice}}</td>
+      <td><img style="width:50px;height:50px;" src="/photos/products/{{this.img.[0]}}" alt=""></td>
+      {{#if this.productofferpercent}}
+      <td class="text-light">{{this.productofferpercent}}%</td>
+      {{else}}
+    <td class="text-light">0%</td>
+      {{/if}}
+       {{#if this.newprices}}
+      <td class="text-light">{{this.newprices}}</td>
+      {{else}}
+    <td class="text-light">no offer price</td>
+      {{/if}}
+
+
+      <td>       
+          {{!-- <a  class="btn btn-outline-primary" onclick="offe('{{this._id}}')">add offer</a> --}}
+
+          
+          {{#if oldprice}}
+         <a  class="btn btn-outline-danger text-light mt-2" onclick="hai('{{this._id}}')">delete</a>
+
+              {{else}}
+                <div class="accordion mt-2 " id="accordionExample"   style="max-width: 250px;">
+                <div class="accordion-item  text-light"  style="background-color:black ;" >
+                <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button  bg-dark text-light"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{this._id}}" aria-expanded="true" aria-controls="collapseOne">
+                 Add Offer
+                </button>
+                </h2>
+                <div id="collapseOne{{this._id}}" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                      
+<form id="add-offer">
+
+                <div class="col-12">
+                 <label for="yourUsername" class="form-label">Enter offer percentage</label>
+                 <div class="input-group has-validation">
+                       
+                 <input type="text" name="persentage" class="form-control" required>
+                </div>
+                <div>
+                <input type="text" name="proId" id="" value="{{this._id}}" hidden>
+
+                </div>
+
+                 </div>
+                 <div class="col-12">
+                 <button class="btn btn-primary w-100 bg-dark " type="submit">Add</button>
+                 </div> 
+</form>
+                  </div> 
+                  </div> 
+                  </div> 
+                  </div> 
+                 {{/if}}
+             
+                    
+                    
+
+    </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+
+  <script src="/adminassets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/adminassets/vendor/chart.js/chart.min.js"></script>
+  <script src="/adminassets/vendor/echarts/echarts.min.js"></script>
+  <script src="/adminassets/vendor/quill/quill.min.js"></script>
+  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/adminassets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/adminassets/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+
+  
+    $("#add-offer").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/admin/product-offer', 
+            type: 'post',
+            data: $('#add-offer').serialize(),
+           
+
+            success: (response) => {
+if(response.status){
+   Swal.fire({
+  imageUrl: 'https://cdn.dribbble.com/users/2613050/screenshots/7347945/discount_logo.gif',
+  imageHeight: 300,
+  imageAlt: 'A tall image'
+}).then(()=>{
+           location.reload()
+        })
+         }
+         }
+        })
+        })
+  
+</script>
+
+<script>
+    function hai(prouctId){
+        console.log('helloo')
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+     $.ajax({
+        url:'/admin/delete-offer/'+prouctId,
+        method:'get',
+        success:(response)=>{
+          if(response.status){
+            
+            swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    }).then(()=>{
+      location.reload()
+    })
+          }
+             
+        }
+      })
+    
+  } 
+});
+     
+
+
+
+ 
+    }
+  </script>
+      

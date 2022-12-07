@@ -1,0 +1,112 @@
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/adminassets/img/favicon.png" rel="icon">
+  <link href="/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/adminassets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/adminassets/css/style.css" rel="stylesheet">
+</head>
+<main id="main" class="main">
+<body  style=" background-image: linear-gradient(to right, rgb(0,0,0), rgb(0 0 0));">
+    
+    <table class="table table-borderless datatable">
+  <thead>
+    <tr style=" background-image: linear-gradient(to right, rgba(126, 77, 77, 0), rgb(0, 0, 0));">
+      <th class="text-light" scope="col">No</th>
+      <th class="text-light"scope="col">Date.</th>
+      <th class="text-light" scope="col">Name</th>
+      <th class="text-light" scope="col">Phone</th>
+      <th class="text-light" scope="col">E-mail</th>
+      <th class="text-light">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+     <tr style=" background-image: linear-gradient(to right, rgba(126, 77, 77, 0), rgb(0, 0, 0);">
+          <th class="text-light" scope="row">
+      
+  {{inc @index}}
+
+      </th>
+    
+      <td class="text-light">{{this.newdate}}</td>
+      <td class="text-light" >{{this.firstname}} {{this.lastname}}</td>
+      <td class="text-light">{{this.phonenumber}}</td>
+      <td class="text-light">{{this.email}}</td>
+      <td>
+     
+    
+
+       
+        {{#if blockstatus}} 
+         <a href="/admin/block-user/{{this._id}}" class="btn btn-outline-primary text-danger" >block</a> 
+         {{else}}
+         <a href="/admin/unblock-user/{{this._id}}" class="btn btn-outline-primary text-light">unblock</a>
+       
+
+        {{/if}}
+ 
+
+      </td>
+    </tr>
+    {{/each}}
+   
+   
+   
+  </tbody>
+</table>
+ <script src="/adminassets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/adminassets/vendor/chart.js/chart.min.js"></script>
+  <script src="/adminassets/vendor/echarts/echarts.min.js"></script>
+  <script src="/adminassets/vendor/quill/quill.min.js"></script>
+  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/adminassets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/adminassets/js/main.js"></script>
+</body>
+
+</main>
+{{!-- 
+<script>
+  
+  function bloc(id){
+console.log("rAAKKK")
+   document.getElementById('BLOCK').innerHTML="false"
+  document.getElementById("blockbutton").style.visibility = "hidden";
+    document.getElementById("unblockbutton").style.visibility = "visible";
+
+    $.ajax({
+      url:'/admin/block-user/'+id,
+      type:'get',
+      success:(response)=>{
+      
+      }
+    }).then(()=>{
+   
+  
+    })
+  }
+</script> --}}

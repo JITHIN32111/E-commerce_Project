@@ -1,0 +1,169 @@
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/adminassets/img/favicon.png" rel="icon">
+  <link href="/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/adminassets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/adminassets/css/style.css" rel="stylesheet">
+</head>
+<main class="main" id="main">
+<body  style=" background-image: linear-gradient(to right, rgb(0,0,0), rgb(0 0 0));">
+<a  href="#edit-modal" data-toggle="modal"class="btn btn-outline-warning text-light">Add coupen</a>
+   
+  <table class="table mt-3">
+  <thead>
+    <tr>
+      <th class="text-light" scope="col">No</th>
+      <th class="text-light"  scope="col">Name</th>
+      <th class="text-light" scope="col">Percentage</th>
+       <th class="text-light" scope="col">Expiry-Date</th>
+       <th class="text-light" scope="col">Manage</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    {{#each coupen}}
+    <tr>
+      <th class="text-light" scope="row">
+      
+  {{inc @index}}
+
+      </th>
+      <td class="text-light">{{this.name}}</td>
+      <td class="text-light">{{this.percentage}}</td>
+      <td class="text-light">{{this.expiryDate}}</td>
+       <td class="text-light">{{this.status}}</td>
+       <td hidden>{{this._id}}</td>
+      <td>       
+       <a  class="btn btn-outline-danger text-light mt-2" onclick="hai('{{this._id}}')">delete</a>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+
+      <script src="/adminassets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/adminassets/vendor/chart.js/chart.min.js"></script>
+  <script src="/adminassets/vendor/echarts/echarts.min.js"></script>
+  <script src="/adminassets/vendor/quill/quill.min.js"></script>
+  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/adminassets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/adminassets/js/main.js"></script>
+</body>
+
+
+
+   <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                           
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                    <form action="/admin/add-coupen" method="post">
+                                        <div class="form-group">
+                                            <label for="singin-email">name</label>
+                                            <input type="text" class="form-control"   name="name" required>
+                                        </div><!-- End .form-group -->
+
+                                         <div class="form-group">
+                                            <label for="singin-email">percentage</label>
+                                            <input type="number" class="form-control"  name="percentage" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="singin-email">expiry-date</label>
+                                            <input type="date" class="form-control"  name="expiryDate" required>
+                                        </div>
+                                      
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>submit</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                           
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                   
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                           
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+</main>
+<script>
+    function hai(coupenId){
+        console.log('helloo')
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+     $.ajax({
+        url:'/admin/delete-coupen/'+coupenId,
+        method:'get',
+        success:(response)=>{
+          if(response.status){
+            
+            swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    }).then(()=>{
+      location.reload()
+    })
+          }
+             
+        }
+      })
+    
+  } 
+});
+     
+
+
+
+ 
+    }
+        document.getElementById("id").value=
+  </script>
+      

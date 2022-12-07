@@ -1,0 +1,99 @@
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/adminassets/img/favicon.png" rel="icon">
+  <link href="/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/adminassets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/adminassets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/adminassets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/adminassets/css/style.css" rel="stylesheet">
+</head>
+
+<main class="main" id="main">
+<body  style=" background-image: linear-gradient(to right, rgb(0,0,0), rgb(0 0 0));">
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 text-light">
+                <h2 class="text-center">Edit Products</h2>
+                <form action="/admin/edit-product/{{product._id}}" enctype="multipart/form-data"  method="post">
+                    <label for="">Name</label>
+                    <input type="text" required name="name"  class="form-control" value="{{product.name}}">
+
+                     <label for="">category</label>
+                    
+                    <select class="form-select" aria-label="Default select example" name="category">
+                      <option  value="{{product.category}}" >{{product.category}}</option>
+                       {{#each category}}
+                      <option  value="{{this.name}}" >{{this.name}}</option>
+                     {{/each}}
+                    </select>
+
+                     <label for="">discription</label>
+                    <input type="text" required name="discription" value="{{product.discription}}" class="form-control">
+
+                     <label for="">price</label>
+                    <input type="text" required name="price" value="{{product.price}}" class="form-control">
+
+                      <label for="">stock</label>
+                    <input type="text"  required name="stock" value="{{product.stock}}" class="form-control">
+
+                    <label for="">image</label>
+                    <img src="/photos/products/{{product.img.[0]}}" alt="  "style="width:50px;height:50px" id="imgView" class="p-2">
+                    {{#if product.img.[1]}}
+
+                      <img src="/photos/products/{{product.img.[1]}}" alt="  "style="width:50px;height:50px" id="imgView" class="p-2">
+                      {{/if}}
+                      {{#if product.img.[2]}}
+                      <img src="/photos/products/{{product.img.[2]}}" alt="  "style="width:50px;height:50px" id="imgView" class="p-2">
+
+                      {{/if}}
+
+
+
+                    <input type="file"  name="images"  class="form-control" onchange="viewImage(event)" multiple >
+
+                    <button type="submit" class="btn btn-success mt-4">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <script src="/adminassets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/adminassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/adminassets/vendor/chart.js/chart.min.js"></script>
+  <script src="/adminassets/vendor/echarts/echarts.min.js"></script>
+  <script src="/adminassets/vendor/quill/quill.min.js"></script>
+  <script src="/adminassets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/adminassets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/adminassets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/adminassets/js/main.js"></script>
+</body>
+
+</main>
+<script>
+    function viewImage(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

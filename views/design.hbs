@@ -1,0 +1,87 @@
+div class="container">
+                <h2 class="title text-center">Currently Popular Items</h2><!-- End .title -->
+
+             
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-new" role="tabpanel" aria-labelledby="tab-new-link">
+                        <div class="row justify-content-center">
+                            {{#each pro}}
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="product product-4 ">
+                                    <figure class="product-media">
+                                        <a href="/product/{{this._id}}">
+                                        {{#if this.productofferpercent}}
+                                         <span class="product-label label-new">{{this.productofferpercent}} %off</span>
+                                          {{/if}}
+                                            <img src="/photos/products/{{this.img.[1]}}" alt="Product image"
+                                            
+                                                class="product-image">
+                                 <img src="/photos/products/{{this.img.[0]}}" alt="Product image" class="product-image-hover">
+
+                                            {{!-- <img src="/product-images/{{this._id}}.jpg" alt="Product image"
+                                                class="product-image-hover"> --}}
+
+                                        </a>
+
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+                                                    to wishlist</span></a>
+                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
+                                                title="Quick view"><span>Quick view</span></a>
+                                            <a href="#" class="btn-product-icon btn-compare"
+                                                title="Compare"><span>Compare</span></a>
+                                        </div><!-- End .product-action -->
+
+                                        <div class="product-action">
+                                            {{!-- <a href="/cart/{{this._id}}" class="btn-product btn-cart"
+                                                onclick="func()"><span>add to cart</span></a> --}}
+
+                                            {{!-- <a class="btn btn-product btn-cart" onclick="funcooo('{{this._id}}')"><span>add
+                                                    to cart</span></a> --}}
+                                                    <button class="btn btn-product btn-cart" onclick="funcooo('{{this._id}}','{{this.stock}}')">Add to Cart</button>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <div class="product-cat">
+                                            <a href="#">{{this.category}}</a>
+                                        </div><!-- End .product-cat -->
+                                        <h3 class="product-title"><a href="product.html">{{this.name}}</a></h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            {{#if this.oldprice}}
+                                            <div class="product-price" style="text-decoration:line-through;">
+                                            Rs:{{this.oldprice}}
+                                            </div>
+                                            <div class="product-price">
+                                                Rs:{{this.price}}
+                                            </div>
+                                            {{else}}
+                                            <div class="product-price">
+                                                Rs:{{this.price}}
+                                            </div>
+                                            
+                                            {{/if}}
+                                           
+              
+                                           
+                                        </div><!-- End .product-price -->
+                                        <div class="product-nav product-nav-dots">
+                                            <a href="#" class="active" style="background: #e5dcb1;"><span
+                                                    class="sr-only">Color name</span></a>
+                                            <a href="#" style="background: #bacbd8;"><span class="sr-only">Color
+                                                    name</span></a>
+                                        </div><!-- End .product-nav -->
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                            {{/each}}
+                           
+
+
+                            <!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                        </div><!-- End .row -->
+                    </div><!-- .End .tab-pane -->
+
+                    <div class="mb-3"></div><!-- End .mb-6 -->
+                </div>

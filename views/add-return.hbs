@@ -1,0 +1,30 @@
+ <link rel="stylesheet" href="/assets/css/style.css">
+
+<form action="/return-details" method="post" >
+                                <div class="form-group">
+                                  <label for="singin-email">Note</label>
+                                  <input type="text" class="form-control" size="50" name="note" required>
+                                </div><!-- End .form-group -->
+
+                               <div class="form-group">
+                                  <label for="singin-email">Discription</label>
+                                  <input type="text" class="form-control" size="50" name="discription" required>
+                                </div>
+
+                                
+                                <input type="text" name="proId" value="{{this.product._id}}" hidden>
+                                <input type="text" name="orderId" value="{{../orderId}}" hidden>
+
+                             
+
+
+
+                                <div class="form-footer">
+                                  <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>submit</span>
+                                    <i class="icon-long-arrow-right"></i>
+                                  </button>
+
+
+                                </div><!-- End .form-footer -->
+                              </form>
