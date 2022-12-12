@@ -1,7 +1,8 @@
 var db=require('../confi/connection')
+const MongoClient=require('../confi/connection')
+
 var collection=require('../confi/collections')
 const { ObjectID } = require('bson')
-const { response } = require('express')
 module.exports={
     getallusers:()=>{
         return new Promise(async(resolve,reject)=>{
