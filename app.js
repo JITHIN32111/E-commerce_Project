@@ -111,7 +111,7 @@ Handlebars.registerHelper('review',(value)=>{
 db.connect((err)=>{
   if(err)
   console.log("connection error"+err);
-  else console.log();('database connected')
+  else console.log('database connected')
 })
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
