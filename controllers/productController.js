@@ -2,7 +2,8 @@ const producthelpers = require("../helpers/product-helpers");
 
   module.exports.viewAllProducts=async (req, res) => {
     let category1=req.params.name
-  
+    console.log(category1);
+
     let page={}
     page.total=await producthelpers.getCountProducts()
     console.log("LLL+++++++++++++");

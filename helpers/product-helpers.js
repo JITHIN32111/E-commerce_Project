@@ -84,9 +84,13 @@ module.exports={
         resolve(count.length)
       })
      },getCountProducts:()=>{
+      // return new Promise(async(resolve, reject) => {
+      //   let count=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+      //   resolve(count.length)
+      // })
       return new Promise(async(resolve, reject) => {
         let count=await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
-        resolve(count.length)
+       resolve(count.length)
       })
      }
     //  addOffer:(percent)=>{

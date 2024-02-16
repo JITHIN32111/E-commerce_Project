@@ -3,11 +3,11 @@ var db = require("../confi/connection");
 var collection = require("../confi/collections");
 const bcrypt = require("bcrypt");
 const MongoClient=require('../confi/connection')
-const { response } = require("../app");
 const ObjectID = require("mongodb").ObjectId;
 const Razorpay = require("razorpay");
 const refferalHelpers = require("../helpers/refferal-helpers");
 const dotenv = require('dotenv').config();
+
 var instance = new Razorpay({
   key_id:process.env.razorpay_key_id,
   key_secret:process.env.razorpay_key_secret,
@@ -771,6 +771,8 @@ module.exports = {
           details["payment[razorpay_payment_id]"]
       );
       hmac = hmac.digest("hex");
+      console.log(":::::");
+      console.log(hmac);
       if (hmac == details["payment[razorpay_signature]"]) {
         resolve();
       } else {
@@ -807,7 +809,7 @@ module.exports = {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: "http://localhost:3000/success",
+          return_url: "https://sintesi.tk/success",
           cancel_url: "http://localhost:3000/cancel",
         },
         transactions: [
@@ -1237,6 +1239,7 @@ module.exports = {
   },
 
 
+  
   returnApproved:(pId,oId)=>{
     return new Promise(async(resolve, reject) => {
 
@@ -1253,11 +1256,12 @@ module.exports = {
       limit=price*40/100
       offerPrice=limit*parseInt(order.coupenPercentage)/100
       newPrice=price-offerPrice
+      
 
       if(parseInt(order.
         coupenPercentage)>0){
 
-        price=newPrice
+        
       }
       else{
         price=parseInt(pro.price)

@@ -1,7 +1,6 @@
 var db = require('../confi/connection')
 var collection = require('../confi/collections')
 const ObjectID = require('mongodb').ObjectId
-const { response } = require('express')
 var code = require('voucher-code-generator');
 const { Transaction } = require('mongodb');
 
@@ -92,8 +91,6 @@ module.exports={
         })
     },
     getWalletAmount:(userId)=>{
-        console.log(userId);
-        console.log('][][][]');
         return new Promise((resolve, reject) => {
             let wallet=db.get().collection(collection.WALLET_COLLECTION).findOne({userId:ObjectID(userId)})
             resolve(wallet)

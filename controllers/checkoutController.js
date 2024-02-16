@@ -39,14 +39,12 @@ module.exports.submitAddress=async (req, res) => {
 module.exports.checkoutPage=async (req, res) => {
     if (req.session.loggedin) {
       let member = req.session.user;
+      console.log(member);
       let total = await usersHelpers.getTotalAmount(req.session.user._id);
       let products = await usersHelpers.getCartProducts(req.session.user._id);
       let address = await usersHelpers.getAddress(req.session.user._id)
       let coupen = await producthelpers.getCoupenDetails(req.session.user._id);
       let Wallet = await refferalHelpers.getWalletAmount(req.session.user._id);
-         
-
-      console.log(Wallet.balance);
       amount = Wallet.balance;
   
       res.render("checkout", {
@@ -135,7 +133,7 @@ module.exports.paypalPayement=(req, res) => {
         } else {
           console.log(JSON.stringify(payment));
   
-  
+        
           res.redirect("/order-success");
   
         }

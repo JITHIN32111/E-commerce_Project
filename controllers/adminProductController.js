@@ -4,7 +4,6 @@ const usersHelpers = require('../helpers/user-helpers')
 const producthelpers=require('../helpers/product-helpers');
 const categoryhelpers = require('../helpers/category-helpers');
 
-const { response } = require('../app');
 
 const credentials={name:'jithin@gmail.com',password:'12345'}
 const{upload,upload2,upload3 }=require('../public/javascripts/fileupload');

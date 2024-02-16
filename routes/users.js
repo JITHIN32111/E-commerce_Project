@@ -1,8 +1,5 @@
 var express = require("express");
 var router = express.Router();
-const usersHelpers = require("../helpers/user-helpers");
-const producthelpers = require("../helpers/product-helpers");
-const { response } = require("express");
 /* GET home page. */
 const {
   userhomepage,

@@ -3,6 +3,7 @@ const usersHelpers = require('../helpers/user-helpers')
 
 const { Client }=require('twilio/lib/twiml/VoiceResponse')
 const otp = require('../confi/otp');
+ 
 let client = require("twilio")( process.env.twillio_accountSID, process.env.twillio_authToken);
 
 
@@ -20,17 +21,22 @@ module.exports.enterNumber= (req, res) => {
     usersHelpers.otpsend(req.body).then((response) => {
       if (response.status && response.user.blockstatus) {
         let phonenumber = parseInt(response.user.phonenumber);
+
         req.session.phonenumber = phonenumber;
+
         req.session.loggedin = true;
+
         req.session.user = response.user;
+        
         client.verify
           .services(otp.serviceID) // Change service ID
           .verifications.create({
             to: `+91${phonenumber}`,
             channel: "sms",
           })
-          .then((response) => {})
-          .catch((err) => {});
+
+           .then((response) => {})
+           .catch((err) => {});
         res.redirect("/otp");
       } else {
         req.session.loginErr = true;

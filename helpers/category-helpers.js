@@ -1,7 +1,6 @@
 var db=require('../confi/connection')
 var collection=require('../confi/collections')
 const { ObjectID } = require('bson')
-const { response } = require('express')
 const cookieParser = require('cookie-parser')
 module.exports={
   insertcategory:(category)=>{
