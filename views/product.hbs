@@ -49,10 +49,10 @@
                                 </div><!-- End .product-gallery -->
                             </div><!-- End .col-md-6 -->
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 pt-4">
                                 <div class="product-details">
                                     <h1 class="product-title">{{pro.name}}</h1><!-- End .product-title -->
-
+              <h6>{{pro.discription}}</h6>
                                     <div class="ratings-container">
                                         <div class="ratings">
                                             <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
@@ -90,10 +90,11 @@
                                         {{#if (stock pro.stock)}}
                                         <p class="text-danger">Currently Out of stock</p>
                                          {{else}}
-                                          <h6>only {{pro.stock}}stocks Available</h6> 
+                                       
+                                          <p class="">only {{pro.stock}}stocks Available</p> 
 
                                         {{/if}}
-                                        <h6>Discription:{{pro.discription}}</h6>
+                          
 
                                       
                                     </div><!-- End .product-content -->
@@ -306,7 +307,7 @@
 
                     <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
 
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                    <div class="owl-carousel  owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                         data-owl-options='{
                             "nav": false, 
                             "dots": true,
@@ -332,10 +333,10 @@
                                 }
                             }
                         }'>{{#each related}}
-                        <div class="product product-7 text-center">
+                        <div class="product product-7  pl-5 ms-5">
                             
                             
-                            <figure class="product-media">
+                            <figure class="product-media ">
                                 <span class="product-label label-new">New</span>
                                 <a href="product.html">
                         <img src="/photos/products/{{this.img.[1]}}"  alt="Product image" class="product-image">                                </a>

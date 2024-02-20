@@ -68,27 +68,27 @@
                         <nav class="main-nav">
                             <ul class="menu sf-arrows">
                                 <li class="megamenu-container active">
-                                    <a href="/" class="sf-with-ul">Home</a>
+                                    <a href="/" >Home</a>
 
                                     <!-- End .megamenu -->
                                 </li>
                                 <li>
-                                    <a href="#" class="sf-with-ul">Shop</a>
+                                    <a href="#" >Shop</a>
 
                                     <!-- End .megamenu megamenu-md -->
                                 </li>
                                 <li>
-                                    <a href="/viewAllProducts" class="sf-with-ul">Product</a>
+                                    <a href="/viewAllProducts" >Product</a>
 
                                     <!-- End .megamenu megamenu-sm -->
                                 </li>
                                 <li>
-                                    <a href="#" class="sf-with-ul">Pages</a>
+                                    <a href="#" >Pages</a>
 
                                     
                                 </li>
                                 <li>
-                                    <a href="#" class="sf-with-ul">Blog</a>
+                                    <a href="#" >Blog</a>
 
                                     
                                 </li>
@@ -112,29 +112,17 @@
                         <!-- End .compare-dropdown -->
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                 {{#if icon}}
+                            <a href="/carts" class="dropdown-toggle" role="button"  aria-haspopup="true" aria-expanded="false" data-display="static">
+                             
                                  <i class="icon-shopping-cart"></i>
                                
                                 <span class="cart-count" id="cart-count">{{cartCount}}</span>
-                                {{else}}
+                        
                                <i class="icon-shopping-cat"></i>
-                                {{/if}}
+                            
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right">
-                               <!-- End .cart-product -->
-
-                                <div class="dropdown-cart-total">
-                                    <span>Total</span>
-
-                                    <span class="cart-total-price">{{total}}</span>
-                                </div><!-- End .dropdown-cart-total -->
-
-                                <div class="dropdown-cart-action">
-                                    <a href="/carts" class="btn btn-primary">View Cart</a>
-                                </div><!-- End .dropdown-cart-total -->
-                            </div><!-- End .dropdown-menu -->
+                            <!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
