@@ -36,7 +36,6 @@ module.exports.userhomepage= async function(req, res, next) {
 
 
 module.exports.login=function(req, res, next) {
-    console.log(req.session.user);
     
     if(req.session.loggedin ){
   

@@ -25,8 +25,7 @@ module.exports.addProducts=function(req,res){
     }
 
 module.exports.addProductsDetails=function(req,res){
-    console.log("{{{");
-    console.log(req.body);
+   
     const files=req.files
     const fileName=files.map((file)=>{
     return file.filename
@@ -55,7 +54,7 @@ module.exports.editProducts=(req,res)=>{
      }
 
      module.exports.editProductsDetail=(req,res)=>{
-        console.log("&&&&&&&&&&&&&&&&&&&&&&&");
+
         let id=req.params.id
         producthelpers.productdetails(req.params.id).then((products)=>{
           if(req.files!=0){

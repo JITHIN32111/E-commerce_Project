@@ -29,8 +29,7 @@ module.exports.viewOrderProductsAdmin=async(req,res)=>{
 
 
 module.exports.returnDetails= (req, res) => {
-    console.log("++++++++++++");
-    console.log(req.body);
+  
     oId=req.body.orderId
     pId=req.body.proId
   
@@ -45,8 +44,7 @@ module.exports.returnDetails= (req, res) => {
 
 
 module.exports.cancelOrder=async(req,res)=>{
-    console.log("++++++++++++++++++++++++++++++++++++++++++++++");
-   console.log(req.params.qnty);
+
     let product=await producthelpers.ProductDetails(req.params.id)
    
     usersHelpers.cancelOrder(req.params.id,product,req.params.proId,req.params.qnty).then((response)=>{
