@@ -809,8 +809,8 @@ module.exports = {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: "https://sintesi.tk/success",
-          cancel_url: "http://localhost:3000/cancel",
+          return_url: "https://sintezi.onrender.com/success",
+          cancel_url: "https://sintezi.onrender.com/cancel",
         },
         transactions: [
           {
